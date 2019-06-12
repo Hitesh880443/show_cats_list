@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion build_versions.complie_sdk
+    defaultConfig {
+        applicationId "com.hitesh.showcatslist"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode build_versions.version_code
+        versionName build_versions.version_name
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue "string", "BASE_URL", "http://agl-developer-test.azurewebsites.net/"
+        }
+        debug {
+            debuggable true
+            applicationIdSuffix ".debug"
+            resValue "string", "BASE_URL", "http://agl-developer-test.azurewebsites.net/"
+
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.kotlin_lib
+
+    implementation deps.support.app_compact
+    implementation deps.support.constraint
+    implementation deps.support.recyclerview
+    implementation deps.support.design
+
+    implementation deps.lifecyle
+
+    implementation deps.retrofit.main
+    implementation deps.retrofit.rxadapter
+    implementation deps.retrofit.converter
+
+    implementation deps.dagger.main
+    kapt deps.dagger.complier
+
+    implementation deps.rx.java
+    implementation deps.rx.android
+
+    implementation deps.okhttp.main
+    implementation deps.okhttp.logger
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.support.test_runner
+    androidTestImplementation deps.espresso.core
+    testImplementation deps.support.test_rule
+    testImplementation deps.test.mockito
+    testImplementation deps.test.core_testing
+
+}

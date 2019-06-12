@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ShowCatsList</string>
+    <string name="error_message">Oops.. Something went wrong.</string>
+    <string name="retry">RETRY</string>
+</resources>
